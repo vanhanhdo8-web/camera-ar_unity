@@ -14,9 +14,15 @@ jobs:
     timeout-minutes: 60
 
     steps:
-      # 1. Checkout repo
+      # 1. Checkout repo (voi LFS de lay duoc cac file .a binary that su)
       - name: Checkout
         uses: actions/checkout@v4
+        with:
+          lfs: true
+
+      # 1b. Pull LFS objects (dam bao tat ca .a binary duoc tai day du)
+      - name: Pull Git LFS files
+        run: git lfs pull
 
       # Fix permissions for Unity build scripts (since project is committed from Windows)
       - name: Fix Permissions
