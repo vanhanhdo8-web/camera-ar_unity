@@ -1,0 +1,7 @@
+﻿2026-07-03T11:55:45.7828440Z ##[group]Run find iOSBuild -name "*.sh" -exec chmod +x {} \;
+2026-07-03T11:55:45.7829020Z [36;1mfind iOSBuild -name "*.sh" -exec chmod +x {} \;[0m
+2026-07-03T11:55:45.7829380Z [36;1mchmod +x iOSBuild/MapFileParser || true[0m
+2026-07-03T11:55:45.7829770Z [36;1mchmod -R +x iOSBuild/Il2CppOutputProject/IL2CPP/build || true[0m
+2026-07-03T11:55:45.7867400Z shell: /bin/bash -e {0}
+2026-07-03T11:55:45.7867670Z ##[endgroup]
+2026-07-03T11:55:45.8388910Z chmod: iOSBuild/MapFileParser: No such file or directory
