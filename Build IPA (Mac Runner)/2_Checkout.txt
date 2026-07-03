@@ -1,0 +1,86 @@
+﻿2026-07-03T11:31:04.4618400Z Node 20 is being deprecated. This workflow is running with Node 24 by default. If you need to temporarily use Node 20, you can set the ACTIONS_ALLOW_USE_UNSECURE_NODE_VERSION=true environment variable. For more information see: https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/
+2026-07-03T11:31:04.4626740Z ##[group]Run actions/checkout@v4
+2026-07-03T11:31:04.4629290Z with:
+2026-07-03T11:31:04.4629660Z   repository: vanhanhdo8-web/camera-ar_unity
+2026-07-03T11:31:04.4632500Z   token: ***
+2026-07-03T11:31:04.4632840Z   ssh-strict: true
+2026-07-03T11:31:04.4633170Z   ssh-user: git
+2026-07-03T11:31:04.4633640Z   persist-credentials: true
+2026-07-03T11:31:04.4634030Z   clean: true
+2026-07-03T11:31:04.4634390Z   sparse-checkout-cone-mode: true
+2026-07-03T11:31:04.4634790Z   fetch-depth: 1
+2026-07-03T11:31:04.4635110Z   fetch-tags: false
+2026-07-03T11:31:04.4635450Z   show-progress: true
+2026-07-03T11:31:04.4635800Z   lfs: false
+2026-07-03T11:31:04.4636110Z   submodules: false
+2026-07-03T11:31:04.4636510Z   set-safe-directory: true
+2026-07-03T11:31:04.4637170Z ##[endgroup]
+2026-07-03T11:31:04.8891190Z Syncing repository: vanhanhdo8-web/camera-ar_unity
+2026-07-03T11:31:04.8894550Z ##[group]Getting Git version info
+2026-07-03T11:31:04.8895180Z Working directory is '/Users/runner/work/camera-ar_unity/camera-ar_unity'
+2026-07-03T11:31:04.8900190Z [command]/opt/homebrew/bin/git version
+2026-07-03T11:31:04.9510580Z git version 2.55.0
+2026-07-03T11:31:04.9529310Z ##[endgroup]
+2026-07-03T11:31:04.9554830Z Copying '/Users/runner/.gitconfig' to '/Users/runner/work/_temp/b14b56cc-4e92-4a10-8c9d-fa6afccbde37/.gitconfig'
+2026-07-03T11:31:04.9569570Z Temporarily overriding HOME='/Users/runner/work/_temp/b14b56cc-4e92-4a10-8c9d-fa6afccbde37' before making global git config changes
+2026-07-03T11:31:04.9570690Z Adding repository directory to the temporary git global config as a safe directory
+2026-07-03T11:31:04.9571590Z [command]/opt/homebrew/bin/git config --global --add safe.directory /Users/runner/work/camera-ar_unity/camera-ar_unity
+2026-07-03T11:31:04.9740060Z Deleting the contents of '/Users/runner/work/camera-ar_unity/camera-ar_unity'
+2026-07-03T11:31:04.9757290Z ##[group]Initializing the repository
+2026-07-03T11:31:04.9760710Z [command]/opt/homebrew/bin/git init /Users/runner/work/camera-ar_unity/camera-ar_unity
+2026-07-03T11:31:05.0457120Z hint: Using 'master' as the name for the initial branch. This default branch name
+2026-07-03T11:31:05.0473090Z hint: will change to "main" in Git 3.0. To configure the initial branch name
+2026-07-03T11:31:05.0474130Z hint: to use in all of your new repositories, which will suppress this warning,
+2026-07-03T11:31:05.0477490Z hint: call:
+2026-07-03T11:31:05.0478810Z hint:
+2026-07-03T11:31:05.0479440Z hint: 	git config --global init.defaultBranch <name>
+2026-07-03T11:31:05.0480830Z hint:
+2026-07-03T11:31:05.0481410Z hint: Names commonly chosen instead of 'master' are 'main', 'trunk' and
+2026-07-03T11:31:05.0482180Z hint: 'development'. The just-created branch can be renamed via this command:
+2026-07-03T11:31:05.0483990Z hint:
+2026-07-03T11:31:05.0484500Z hint: 	git branch -m <name>
+2026-07-03T11:31:05.0484930Z hint:
+2026-07-03T11:31:05.0485540Z hint: Disable this message with "git config set advice.defaultBranchName false"
+2026-07-03T11:31:05.0486670Z Initialized empty Git repository in /Users/runner/work/camera-ar_unity/camera-ar_unity/.git/
+2026-07-03T11:31:05.0496280Z [command]/opt/homebrew/bin/git remote add origin https://github.com/vanhanhdo8-web/camera-ar_unity
+2026-07-03T11:31:05.0602510Z ##[endgroup]
+2026-07-03T11:31:05.0603320Z ##[group]Disabling automatic garbage collection
+2026-07-03T11:31:05.0612780Z [command]/opt/homebrew/bin/git config --local gc.auto 0
+2026-07-03T11:31:05.0694630Z ##[endgroup]
+2026-07-03T11:31:05.0695430Z ##[group]Setting up auth
+2026-07-03T11:31:05.0696300Z [command]/opt/homebrew/bin/git config --local --name-only --get-regexp core\.sshCommand
+2026-07-03T11:31:05.0773050Z [command]/opt/homebrew/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+2026-07-03T11:31:05.2252630Z [command]/opt/homebrew/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+2026-07-03T11:31:05.2322910Z [command]/opt/homebrew/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+2026-07-03T11:31:05.3754110Z [command]/opt/homebrew/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+2026-07-03T11:31:05.3857390Z [command]/opt/homebrew/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+2026-07-03T11:31:05.6448470Z [command]/opt/homebrew/bin/git config --local http.https://github.com/.extraheader AUTHORIZATION: basic ***
+2026-07-03T11:31:05.6551620Z ##[endgroup]
+2026-07-03T11:31:05.6553900Z ##[group]Fetching the repository
+2026-07-03T11:31:05.6590480Z [command]/opt/homebrew/bin/git -c protocol.version=2 fetch --no-tags --prune --no-recurse-submodules --depth=1 origin +297593e04690b1a1881ee6b55c7d2a1720523c7e:refs/remotes/origin/main
+2026-07-03T11:31:07.8797440Z From https://github.com/vanhanhdo8-web/camera-ar_unity
+2026-07-03T11:31:07.8803510Z  * [new ref]         297593e04690b1a1881ee6b55c7d2a1720523c7e -> origin/main
+2026-07-03T11:31:07.8810420Z ##[endgroup]
+2026-07-03T11:31:07.8813300Z ##[group]Determining the checkout info
+2026-07-03T11:31:07.8816130Z ##[endgroup]
+2026-07-03T11:31:07.8818170Z [command]/opt/homebrew/bin/git sparse-checkout disable
+2026-07-03T11:31:07.8916440Z [command]/opt/homebrew/bin/git config --local --unset-all extensions.worktreeConfig
+2026-07-03T11:31:07.9024230Z ##[group]Checking out the ref
+2026-07-03T11:31:07.9025920Z [command]/opt/homebrew/bin/git checkout --progress --force -B main refs/remotes/origin/main
+2026-07-03T11:31:09.0439980Z Updating files:  91% (2138/2343)
+2026-07-03T11:31:09.1999870Z Updating files:  92% (2156/2343)
+2026-07-03T11:31:09.2756490Z Updating files:  93% (2179/2343)
+2026-07-03T11:31:09.3114360Z Updating files:  94% (2203/2343)
+2026-07-03T11:31:09.3437950Z Updating files:  95% (2226/2343)
+2026-07-03T11:31:09.4313350Z Updating files:  96% (2250/2343)
+2026-07-03T11:31:09.7085170Z Updating files:  97% (2273/2343)
+2026-07-03T11:31:10.1732500Z Updating files:  98% (2297/2343)
+2026-07-03T11:31:10.1769370Z Updating files:  98% (2308/2343)
+2026-07-03T11:31:10.1961030Z Updating files:  99% (2320/2343)
+2026-07-03T11:31:10.1961620Z Updating files: 100% (2343/2343)
+2026-07-03T11:31:10.1962080Z Updating files: 100% (2343/2343), done.
+2026-07-03T11:31:10.2019410Z Switched to a new branch 'main'
+2026-07-03T11:31:10.2030410Z branch 'main' set up to track 'origin/main'.
+2026-07-03T11:31:10.3553950Z ##[endgroup]
+2026-07-03T11:31:10.3739510Z [command]/opt/homebrew/bin/git log -1 --format=%H
+2026-07-03T11:31:10.3849040Z 297593e04690b1a1881ee6b55c7d2a1720523c7e

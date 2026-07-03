@@ -18,6 +18,13 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
+      # Fix permissions for Unity build scripts (since project is committed from Windows)
+      - name: Fix Permissions
+        run: |
+          find iOSBuild -name "*.sh" -exec chmod +x {} \;
+          chmod +x iOSBuild/MapFileParser || true
+          chmod -R +x iOSBuild/Il2CppOutputProject/IL2CPP/build || true
+
       # 2. Build Xcode project thanh archive (khong sign - development unsigned)
       - name: Build Xcode Archive
         run: |
@@ -29,8 +36,7 @@ jobs:
             -archivePath "${{ runner.temp }}/CameraAR.xcarchive" \
             CODE_SIGN_IDENTITY="-" \
             CODE_SIGNING_REQUIRED=NO \
-            CODE_SIGNING_ALLOWED=NO \
-            | xcpretty || true
+            CODE_SIGNING_ALLOWED=NO
 
       # 3. Export IPA (unsigned - dung cho AltStore/Sideloadly)
       - name: Export IPA (unsigned)
