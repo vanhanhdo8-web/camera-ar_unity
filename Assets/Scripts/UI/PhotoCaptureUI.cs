@@ -77,6 +77,10 @@ namespace CameraAR.UI
         private bool _isSessionReady = false;
         private Queue<GameObject> _thumbnails = new Queue<GameObject>();
 
+        // Cache text tren nut de doi label
+        private TMPro.TextMeshProUGUI _captureBtnText;
+        private TMPro.TextMeshProUGUI _clearBtnText;
+
         // Cache delegates de co the unsubscribe chinh xac
         private System.Action      _onSessionReadyDelegate;
         private System.Action      _onDeviceNotSupportedDelegate;
@@ -90,11 +94,20 @@ namespace CameraAR.UI
         {
             // Ket noi nut chup voi ham xu ly
             if (captureButton != null)
+            {
                 captureButton.onClick.AddListener(OnCaptureButtonClicked);
+                // Tu dong lay TextMeshPro tren nut va dat label
+                _captureBtnText = captureButton.GetComponentInChildren<TMPro.TextMeshProUGUI>();
+                if (_captureBtnText != null) _captureBtnText.text = "\U0001F4F7 Chup"; // 📷 Chup
+            }
 
             // Ket noi nut xoa tat ca
             if (clearAllButton != null)
+            {
                 clearAllButton.onClick.AddListener(OnClearAllClicked);
+                _clearBtnText = clearAllButton.GetComponentInChildren<TMPro.TextMeshProUGUI>();
+                if (_clearBtnText != null) _clearBtnText.text = "\U0001F5D1 Xoa"; // 🗑 Xoa
+            }
 
             // An flash panel ngay tu dau
             if (flashPanel != null)
@@ -127,9 +140,19 @@ namespace CameraAR.UI
                 cameraController.OnSessionError      += _onSessionErrorDelegate;
             }
 
-            // Cap nhat UI trang thai ban dau
-            UpdateCaptureButton(isEnabled: false);
-            SetStatusText("Dang khoi dong AR...", Color.yellow);
+            // FIX: Neu khong co cameraController, tu dong cho phep chup ngay
+            // (tranh truong hop nut bi khoa mai vi khong nhan duoc event session)
+            if (cameraController == null)
+            {
+                _isSessionReady = true;
+                UpdateCaptureButton(isEnabled: true);
+                SetStatusText("San sang! Nhan nut de chup anh.", Color.green);
+            }
+            else
+            {
+                UpdateCaptureButton(isEnabled: false);
+                SetStatusText("Dang khoi dong AR...", Color.yellow);
+            }
             UpdatePhotoCount();
         }
 
