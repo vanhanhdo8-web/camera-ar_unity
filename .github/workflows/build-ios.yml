@@ -1,0 +1,55 @@
+name: Build IPA from Xcode Project
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'iOSBuild/**'   # Chi chay khi co thay doi trong folder Xcode
+  workflow_dispatch:     # Cho phep chay thu cong bat cu luc nao
+
+jobs:
+  build-ipa:
+    name: Build IPA (Mac Runner)
+    runs-on: macos-latest
+    timeout-minutes: 60
+
+    steps:
+      # 1. Checkout repo
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      # 2. Build Xcode project thanh archive (khong sign - development unsigned)
+      - name: Build Xcode Archive
+        run: |
+          xcodebuild archive \
+            -project iOSBuild/Unity-iPhone.xcodeproj \
+            -scheme Unity-iPhone \
+            -configuration Release \
+            -sdk iphoneos \
+            -archivePath "${{ runner.temp }}/CameraAR.xcarchive" \
+            CODE_SIGN_IDENTITY="-" \
+            CODE_SIGNING_REQUIRED=NO \
+            CODE_SIGNING_ALLOWED=NO \
+            | xcpretty || true
+
+      # 3. Export IPA (unsigned - dung cho AltStore/Sideloadly)
+      - name: Export IPA (unsigned)
+        run: |
+          mkdir -p "${{ runner.temp }}/IPA"
+          
+          # Tim app trong archive
+          APP_PATH=$(find "${{ runner.temp }}/CameraAR.xcarchive" -name "*.app" | head -1)
+          
+          # Tao IPA thu cong tu .app
+          mkdir -p Payload
+          cp -r "$APP_PATH" Payload/
+          zip -r "${{ runner.temp }}/IPA/CameraAR.ipa" Payload/
+          rm -rf Payload
+
+      # 4. Upload IPA de download
+      - name: Upload IPA Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: CameraAR-iOS-IPA
+          path: ${{ runner.temp }}/IPA/CameraAR.ipa
+          retention-days: 30
